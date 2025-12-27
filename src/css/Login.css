@@ -1,0 +1,751 @@
+/* Login.css - Corregido para evitar superposición de iconos */
+
+:root {
+  --primary-dark: #1e293b;
+  --primary-color: #334155;
+  --primary-light: #475569;
+  --accent-color: #0ea5e9;
+  --accent-dark: #0284c7;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
+  --border-color: #e2e8f0;
+  --background-light: #f8fafc;
+  --background-white: #ffffff;
+  --text-dark: #1e293b;
+  --text-medium: #64748b;
+  --text-light: #94a3b8;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--text-dark);
+  background-color: var(--background-light);
+  min-height: 100vh;
+}
+
+/* Contenedor principal */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+}
+
+/* Tarjeta de login */
+.login-card {
+  background: var(--background-white);
+  border-radius: 12px;
+  padding: 40px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header */
+.login-header {
+  text-align: center;
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.btn-back-home {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background-color: var(--background-light);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-medium);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-back-home:hover {
+  background-color: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
+}
+
+.login-title-section {
+  padding-top: 10px;
+}
+
+.login-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.login-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.login-subtitle {
+  font-size: 13px;
+  color: var(--text-medium);
+  font-weight: 500;
+}
+
+/* Formulario */
+.login-form {
+  margin-bottom: 30px;
+}
+
+.login-form.validating {
+  animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.login-error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background-color: #fee2e2;
+  border: 1px solid var(--danger-color);
+  border-radius: 8px;
+  color: var(--danger-color);
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-error svg {
+  flex-shrink: 0;
+}
+
+/* Mejoras para grupos de formulario */
+.form-group {
+  margin-bottom: 24px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.form-group:focus-within .form-label {
+  color: var(--accent-color);
+}
+
+.form-group.success:focus-within .form-label {
+  color: var(--success-color);
+}
+
+.form-group.error:focus-within .form-label {
+  color: var(--danger-color);
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+/* CORRECCIÓN APLICADA: Iconos no se superponen al texto */
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.input-with-icon svg:first-child {
+  position: absolute;
+  left: 14px; /* Aumentado de 12px para mejor espaciado */
+  color: var(--text-light);
+  z-index: 10; /* Asegurar que esté sobre el input */
+  transition: color 0.3s ease;
+  pointer-events: none; /* No interferir con clicks */
+}
+
+.form-group:focus-within .input-with-icon svg:first-child {
+  color: var(--accent-color);
+}
+
+.form-group.success .input-with-icon svg:first-child {
+  color: var(--success-color);
+}
+
+.form-group.error .input-with-icon svg:first-child {
+  color: var(--danger-color);
+}
+
+/* CORRECCIÓN APLICADA: Padding-left aumentado para evitar superposición */
+.form-input {
+  width: 100%;
+  padding: 12px 16px 12px 44px; /* Aumentado de 40px a 44px para más espacio */
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--text-dark);
+  background-color: var(--background-white);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  text-indent: 0; /* Asegurar que no haya sangría de texto */
+  letter-spacing: normal;
+}
+
+.form-input::placeholder {
+  color: var(--text-light);
+  
+  opacity: 1; /* Firefox reduce opacidad por defecto */
+}
+
+.form-input:hover:not(:disabled) {
+  border-color: var(--text-light);
+  padding-left: 40px;
+  box-shadow: var(--shadow-sm);
+}
+
+.form-input:focus {
+  outline: none;
+  padding-left: 40px;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Estados específicos para campos válidos */
+.form-group.success .form-input {
+  border-color: var(--success-color);
+  padding-left: 40px;
+  padding-right: 44px; /* Espacio para el checkmark */
+}
+
+.form-group.success .form-input:focus {
+  padding-left: 40px;
+  border-color: var(--success-color);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* Estados específicos para campos con error */
+.form-group.error .form-input {
+  border-color: var(--danger-color);
+  padding-left: 40px;
+}
+
+.form-group.error .form-input:focus {
+  border-color: var(--danger-color);
+  padding-left: 40px;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.form-input:disabled {
+  background-color: var(--background-light);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* CORRECCIÓN APLICADA: Espacio adicional para campos con toggle de contraseña */
+.form-group .input-with-icon:has(.toggle-password) .form-input {
+  padding-right: 48px; /* Más espacio para el botón de toggle */
+  padding-left: 40px;
+}
+
+.form-group.success .input-with-icon:has(.toggle-password) .form-input {
+  padding-right: 80px; /* Espacio para toggle + checkmark */
+}
+
+/* Icono de estado (checkmark) - POSICIÓN CORREGIDA */
+.field-status-icon {
+  position: absolute;
+  right: 48px; /* Ajustado para campos normales */
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--success-color);
+  z-index: 10;
+  animation: fadeIn 0.3s ease;
+  pointer-events: none;
+}
+
+/* Ajuste específico para campos con toggle */
+.form-group.success .input-with-icon:has(.toggle-password) .field-status-icon {
+  right: 52px; /* Más a la izquierda para no chocar con el toggle */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+/* Botón para mostrar/ocultar contraseña - POSICIÓN CORREGIDA */
+.toggle-password {
+  position: absolute;
+  right: 14px; /* Aumentado de 12px para mejor alineación */
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-light);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+  width: 24px;
+  height: 24px;
+}
+
+.toggle-password:hover:not(:disabled) {
+  color: var(--accent-color);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.toggle-password:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Mensajes de error de campo */
+.field-error-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--danger-color);
+  font-weight: 500;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.field-error-text svg {
+  flex-shrink: 0;
+  color: var(--danger-color);
+}
+
+/* Botón de login */
+.btn-login {
+  width: 100%;
+  padding: 14px;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-login::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.7s ease;
+}
+
+.btn-login:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.btn-login:hover:not(:disabled) {
+  background-color: var(--accent-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-login:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-login:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.spinner-small {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Información del sistema */
+.system-info {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-medium);
+}
+
+.info-item svg {
+  flex-shrink: 0;
+  color: var(--accent-color);
+}
+
+/* Mejoras para autocompletado del navegador */
+.form-input:-webkit-autofill,
+.form-input:-webkit-autofill:hover,
+.form-input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px var(--background-white) inset;
+  -webkit-text-fill-color: var(--text-dark);
+  border: 1px solid var(--accent-color);
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.form-group.error .form-input:-webkit-autofill,
+.form-group.error .form-input:-webkit-autofill:hover,
+.form-group.error .form-input:-webkit-autofill:focus {
+  border: 1px solid var(--danger-color);
+}
+
+.form-group.success .form-input:-webkit-autofill,
+.form-group.success .form-input:-webkit-autofill:hover,
+.form-group.success .form-input:-webkit-autofill:focus {
+  border: 1px solid var(--success-color);
+}
+
+/* CORRECCIÓN ESPECÍFICA PARA NAVEGADORES WEBKIT (Chrome, Safari) */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .form-input {
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0) scale(1, 1);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .login-container {
+    padding: 16px;
+    align-items: flex-start;
+    padding-top: 40px;
+  }
+  
+  .login-card {
+    padding: 30px 24px;
+    max-width: 400px;
+  }
+  
+  .login-title {
+    font-size: 22px;
+  }
+  
+  .login-subtitle {
+    font-size: 12px;
+  }
+  
+  .system-info {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+  
+  .btn-back-home {
+    position: relative;
+    margin-bottom: 20px;
+    align-self: flex-start;
+  }
+  
+  .login-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .form-input {
+    font-size: 16px; /* Previene zoom en iOS */
+  }
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 24px 20px;
+    border-radius: 10px;
+  }
+  
+  .login-icon {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .login-title {
+    font-size: 20px;
+  }
+  
+  /* Ajustes para móviles - manteniendo buen espaciado */
+  .form-input {
+    padding: 12px 14px 12px 42px; /* Ajustado para móvil */
+    font-size: 15px;
+  }
+  
+  .input-with-icon svg:first-child {
+    left: 12px; /* Ajustado para móvil */
+  }
+  
+  .toggle-password {
+    right: 12px; /* Ajustado para móvil */
+  }
+  
+  .field-status-icon {
+    right: 44px; /* Ajustado para móvil */
+  }
+  
+  /* Ajustes específicos para campos con toggle en móviles */
+  .form-group .input-with-icon:has(.toggle-password) .form-input {
+    padding-right: 44px;
+  }
+  
+  .form-group.success .input-with-icon:has(.toggle-password) .form-input {
+    padding-right: 72px;
+  }
+  
+  .form-group.success .input-with-icon:has(.toggle-password) .field-status-icon {
+    right: 48px;
+  }
+  
+  .btn-login {
+    padding: 13px;
+    font-size: 14px;
+  }
+  
+  .login-error {
+    font-size: 12px;
+    padding: 10px 14px;
+  }
+  
+  .field-error-text {
+    font-size: 10px;
+  }
+}
+
+/* Estilos para pantallas muy pequeñas */
+@media (max-width: 360px) {
+  .login-card {
+    padding: 20px 16px;
+  }
+  
+  .login-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 12px;
+  }
+  
+  .login-title {
+    font-size: 18px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  /* Ajustes finos para pantallas muy pequeñas */
+  .form-input {
+    padding: 10px 12px 10px 40px;
+  }
+  
+  .input-with-icon svg:first-child {
+    left: 10px;
+  }
+  
+  .toggle-password {
+    right: 10px;
+  }
+  
+  .field-status-icon {
+    right: 40px;
+  }
+  
+  .form-group .input-with-icon:has(.toggle-password) .form-input {
+    padding-right: 40px;
+  }
+  
+  .form-group.success .input-with-icon:has(.toggle-password) .form-input {
+    padding-right: 64px;
+  }
+  
+  .form-group.success .input-with-icon:has(.toggle-password) .field-status-icon {
+    right: 44px;
+  }
+}
+
+/* Mejora para modo oscuro */
+@media (prefers-color-scheme: dark) {
+  .login-container {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  }
+  
+  .login-card {
+    background-color: #1e293b;
+    border-color: #334155;
+  }
+  
+  .form-input {
+    background-color: #334155;
+    border-color: #475569;
+    color: #f1f5f9;
+  }
+  
+  .form-input::placeholder {
+    color: #94a3b8;
+  }
+  
+  .form-input:focus {
+    border-color: var(--accent-color);
+  }
+  
+  .form-group.success .form-input {
+    border-color: var(--success-color);
+  }
+  
+  .form-group.error .form-input {
+    border-color: var(--danger-color);
+  }
+  
+  .form-input:-webkit-autofill,
+  .form-input:-webkit-autofill:hover,
+  .form-input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px #334155 inset;
+    -webkit-text-fill-color: #f1f5f9;
+  }
+  
+  .btn-back-home {
+    background-color: #334155;
+    border-color: #475569;
+    color: #cbd5e1;
+  }
+  
+  .login-title {
+    color: #f1f5f9;
+  }
+  
+  .login-subtitle {
+    color: #94a3b8;
+  }
+  
+  .form-label {
+    color: #e2e8f0;
+  }
+  
+  .info-item {
+    color: #94a3b8;
+  }
+  
+  .input-with-icon svg:first-child {
+    color: #64748b;
+  }
+  
+  .field-error-text {
+    color: #fca5a5;
+  }
+  
+  .toggle-password {
+    color: #94a3b8;
+  }
+  
+  .toggle-password:hover:not(:disabled) {
+    color: var(--accent-color);
+  }
+}
